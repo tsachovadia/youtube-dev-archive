@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+# YouTube Archive - Terminal wrapper script
+# Usage: ytarchive "https://www.youtube.com/watch?v=VIDEO_ID"
+#
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+
+# Check if URL is provided
+if [ $# -eq 0 ]; then
+    echo "Usage: ytarchive \"https://www.youtube.com/watch?v=VIDEO_ID\""
+    echo "Example: ytarchive \"https://www.youtube.com/watch?v=dQw4w9WgXcQ\""
+    exit 1
+fi
+
+# Check if required dependencies are installed
+if ! command -v yt-dlp &> /dev/null; then
+    echo "Error: yt-dlp is not installed. Please run: pip install yt-dlp"
+    exit 1
+fi
+
+# Run the Python archiver script
+cd "$PROJECT_DIR"
+python3 "$SCRIPT_DIR/youtube_archiver.py" "$1"

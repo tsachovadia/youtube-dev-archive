@@ -1,51 +1,44 @@
-# YouTube Developer Archive
+# youtube-dev-archive
 
-A command-line tool to archive YouTube developer tutorials with metadata, transcripts, and organized documentation.
+CLI tool to archive YouTube developer tutorials with metadata, transcripts, and resources.
 
 ## Features
 
-- Download video metadata and transcripts
-- Generate organized README files for each video
-- Extract templates and code references from video descriptions
-- Easy-to-use terminal alias for quick archiving
+- **Metadata extraction** -- pulls title, channel, duration, upload date, and description via `yt-dlp`
+- **Transcript download** -- fetches full video transcripts using `youtube-transcript-api`
+- **Resource extraction** -- parses descriptions for templates, code links, and related URLs
+- **Organized output** -- creates a dedicated folder per video with `metadata.json`, `transcript.txt`, and a generated `README.md`
+
+## Requirements
+
+- Python 3.x
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+- [youtube-transcript-api](https://github.com/jdepoix/youtube-transcript-api)
 
 ## Setup
 
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-2. Set up the terminal alias:
-   ```bash
-   source scripts/setup_alias.sh
-   ```
+```bash
+pip install -r requirements.txt
+source scripts/setup_alias.sh
+```
 
 ## Usage
 
-Archive a YouTube video:
 ```bash
-ytarchive "https://www.youtube.com/watch?v=VIDEO_ID"
+ytarchive "https://youtube.com/watch?v=VIDEO_ID"
 ```
 
-## Project Structure
+Each archived video produces a folder under `videos/`:
 
 ```
 videos/
-├── video-title-1/
-│   ├── README.md
-│   ├── metadata.json
-│   ├── transcript.txt
-│   └── resources/
-└── video-title-2/
-    ├── README.md
-    ├── metadata.json
-    ├── transcript.txt
-    └── resources/
+└── video-title/
+    ├── README.md        # auto-generated summary
+    ├── metadata.json    # full video metadata
+    ├── transcript.txt   # complete transcript
+    └── resources/       # extracted code snippets & templates
 ```
 
-Each video folder contains:
-- **README.md**: Summary, key concepts, and templates from the video
-- **metadata.json**: Video details, links, and technical information
-- **transcript.txt**: Full video transcript
-- **resources/**: Any extracted code snippets or templates
+## License
+
+[MIT](LICENSE)

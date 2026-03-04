@@ -20,6 +20,13 @@ venv.bak/
 .DS_Store
 Thumbs.db
 
+# AI / Agent
+CLAUDE.md
+.cursor/
+.roo/
+memory_bank/
+.agent/
+
 # Project specific
 *.mp4
 *.mkv
